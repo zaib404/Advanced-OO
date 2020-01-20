@@ -35,10 +35,10 @@
             // 
             // txtNoteTexts
             // 
-            this.txtNoteTexts.Location = new System.Drawing.Point(143, 231);
+            this.txtNoteTexts.Location = new System.Drawing.Point(12, 231);
             this.txtNoteTexts.Multiline = true;
             this.txtNoteTexts.Name = "txtNoteTexts";
-            this.txtNoteTexts.Size = new System.Drawing.Size(645, 207);
+            this.txtNoteTexts.Size = new System.Drawing.Size(776, 207);
             this.txtNoteTexts.TabIndex = 0;
             this.txtNoteTexts.Text = "Enter your note here...";
             this.txtNoteTexts.Click += new System.EventHandler(this.textBox1_Click);
@@ -46,7 +46,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(355, 13);
+            this.btnDelete.Location = new System.Drawing.Point(713, 12);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             // btnCollapseOpen
             // 
-            this.btnCollapseOpen.Location = new System.Drawing.Point(13, 13);
+            this.btnCollapseOpen.Location = new System.Drawing.Point(12, 12);
             this.btnCollapseOpen.Name = "btnCollapseOpen";
             this.btnCollapseOpen.Size = new System.Drawing.Size(279, 168);
             this.btnCollapseOpen.TabIndex = 2;

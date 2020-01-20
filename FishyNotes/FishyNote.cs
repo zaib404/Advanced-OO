@@ -12,38 +12,61 @@ namespace FishyNotes
 {
     public partial class FishyNote : Form
     {
-        bool shrink = false;
-        bool textBoxClickedOnce = true;
+        #region Data Members
 
-        string automagically = "";
+        //string _automagically = "";
 
+        bool _shrink = false;
+        bool _fishyNoteBoxClickedOnce = true;
+
+        #endregion
+
+        /// <summary>
+        /// Default Constrcutor
+        /// </summary>
         public FishyNote()
         {
             InitializeComponent();
         }
 
-        //public FishyNote(string FishNoteText)
-        //{
-        //    InitializeComponent();
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="FishNoteText">Text to replace FishNote Text Box</param>
+        public FishyNote(string FishNoteText)
+        {
+            InitializeComponent();
 
-        //    txtNoteTexts.Text = FishNoteText;
-        //}
+            // Set to false so it cannot get rid of the text
+            _fishyNoteBoxClickedOnce = false;
 
+            // change default text to old text
+            txtNoteTexts.Text = FishNoteText;
+        }
+
+        /// <summary>
+        /// Property storing the fish note texts
+        /// </summary>
         public List<String> FishNoteTexts { get; set; } = new List<string>();
 
+        /// <summary>
+        /// Button which closes the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //FishNoteTexts.Add(automagically);
+            FishNoteTexts.Add(txtNoteTexts.Text);
             Dispose();
         }
 
         private void btnCollapseOpen_Click(object sender, EventArgs e)
         {
-            shrink = !shrink;
+            _shrink = !_shrink;
 
-            if (shrink)
+            if (_shrink)
             {
-                Size = new Size(454, 234);
+                Size = new Size(800, 190);
             }
             else
             {
@@ -53,20 +76,20 @@ namespace FishyNotes
 
         private void textBox1_Click(object sender, EventArgs e)
         {
-            if (textBoxClickedOnce)
+            if (_fishyNoteBoxClickedOnce)
             {
-                textBoxClickedOnce = false;
+                _fishyNoteBoxClickedOnce = false;
                 txtNoteTexts.Text = "";
             }
             else
             {
-                automagically += txtNoteTexts.Text;
+                //automagically += txtNoteTexts.Text;
             }
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
-            automagically += txtNoteTexts.Text;
+            //automagically += txtNoteTexts.Text;
         }
 
         #region Code Snippet: makes this borderless window movable

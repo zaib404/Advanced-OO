@@ -12,25 +12,36 @@ namespace FishyNotes
 {
     public partial class frm_FishyNotes : Form
     {
+        #region
+
         FishyNote _frmNote;
-        bool clickedOnce = true;
+
+        bool _clickedOnce = true;
+
+        #endregion
 
         public frm_FishyNotes()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Click Add Note Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddNote_Click(object sender, EventArgs e)
         {
-            if (clickedOnce)
+            // if clicked once true
+            if (_clickedOnce)
             {
                 _frmNote = new FishyNote();
-                //clickedOnce = false;
+                _clickedOnce = false;
             }
             else
             {
-                //int i = _frmNote.FishNoteTexts.Count-1;
-               // _frmNote = new FishyNote(_frmNote.FishNoteTexts[i]);
+                int i = _frmNote.FishNoteTexts.Count - 1;
+                _frmNote = new FishyNote(_frmNote.FishNoteTexts[i]);
             }
 
             _frmNote.ShowDialog();

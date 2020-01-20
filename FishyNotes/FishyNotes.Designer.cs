@@ -33,6 +33,7 @@
             // 
             // btn_AddNote
             // 
+            this.btn_AddNote.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_AddNote.Location = new System.Drawing.Point(30, 35);
             this.btn_AddNote.Name = "btn_AddNote";
             this.btn_AddNote.Size = new System.Drawing.Size(132, 61);
