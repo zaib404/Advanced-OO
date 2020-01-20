@@ -1,6 +1,6 @@
 ﻿namespace FishyNotes
 {
-    partial class FishyNotes
+    partial class frm_FishyNotes
     {
         /// <summary>
         /// Required designer variable.
@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.AddNote = new System.Windows.Forms.Button();
+            this.btn_AddNote = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // AddNote
+            // btn_AddNote
             // 
-            this.AddNote.Location = new System.Drawing.Point(30, 35);
-            this.AddNote.Name = "AddNote";
-            this.AddNote.Size = new System.Drawing.Size(132, 61);
-            this.AddNote.TabIndex = 0;
-            this.AddNote.Text = "More Fish";
-            this.AddNote.UseVisualStyleBackColor = true;
-            this.AddNote.Click += new System.EventHandler(this.AddNote_Click);
+            this.btn_AddNote.Location = new System.Drawing.Point(30, 35);
+            this.btn_AddNote.Name = "btn_AddNote";
+            this.btn_AddNote.Size = new System.Drawing.Size(132, 61);
+            this.btn_AddNote.TabIndex = 0;
+            this.btn_AddNote.Text = "More Fish";
+            this.btn_AddNote.UseVisualStyleBackColor = true;
+            this.btn_AddNote.Click += new System.EventHandler(this.AddNote_Click);
             // 
-            // FishyNotes
+            // frm_FishyNotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(197, 115);
-            this.Controls.Add(this.AddNote);
-            this.Name = "FishyNotes";
+            this.Controls.Add(this.btn_AddNote);
+            this.Name = "frm_FishyNotes";
             this.Text = "FishyNotes";
             this.ResumeLayout(false);
 
@@ -55,7 +55,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button AddNote;
+        private System.Windows.Forms.Button btn_AddNote;
     }
 }
 

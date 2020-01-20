@@ -10,17 +10,31 @@ using System.Windows.Forms;
 
 namespace FishyNotes
 {
-    public partial class FishyNotes : Form
+    public partial class frm_FishyNotes : Form
     {
-        public FishyNotes()
+        FishyNote _frmNote;
+        bool clickedOnce = true;
+
+        public frm_FishyNotes()
         {
             InitializeComponent();
         }
 
         private void AddNote_Click(object sender, EventArgs e)
         {
-            FishyNote _frmNote = new FishyNote();
-            _frmNote.Show();
+            if (clickedOnce)
+            {
+                _frmNote = new FishyNote();
+                //clickedOnce = false;
+            }
+            else
+            {
+                //int i = _frmNote.FishNoteTexts.Count-1;
+               // _frmNote = new FishyNote(_frmNote.FishNoteTexts[i]);
+            }
+
+            _frmNote.ShowDialog();
+
         }
     }
 }

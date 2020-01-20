@@ -13,6 +13,7 @@ namespace FishyNotes
     public partial class FishyNote : Form
     {
         bool shrink = false;
+        bool textBoxClickedOnce = true;
 
         string automagically = "";
 
@@ -21,8 +22,18 @@ namespace FishyNotes
             InitializeComponent();
         }
 
+        //public FishyNote(string FishNoteText)
+        //{
+        //    InitializeComponent();
+
+        //    txtNoteTexts.Text = FishNoteText;
+        //}
+
+        public List<String> FishNoteTexts { get; set; } = new List<string>();
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            //FishNoteTexts.Add(automagically);
             Dispose();
         }
 
@@ -40,17 +51,23 @@ namespace FishyNotes
             }
         }
 
-
         private void textBox1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "";
+            if (textBoxClickedOnce)
+            {
+                textBoxClickedOnce = false;
+                txtNoteTexts.Text = "";
+            }
+            else
+            {
+                automagically += txtNoteTexts.Text;
+            }
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
-            automagically = textBox1.Text;
+            automagically += txtNoteTexts.Text;
         }
-
 
         #region Code Snippet: makes this borderless window movable
         // Modified from https://stackoverflow.com/a/24561946 and attributed to user jay_t55

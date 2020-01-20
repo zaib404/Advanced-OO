@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNoteTexts = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnCollapseOpen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtNoteTexts
             // 
-            this.textBox1.Location = new System.Drawing.Point(143, 231);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(645, 207);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Enter your note here";
-            this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            this.txtNoteTexts.Location = new System.Drawing.Point(143, 231);
+            this.txtNoteTexts.Multiline = true;
+            this.txtNoteTexts.Name = "txtNoteTexts";
+            this.txtNoteTexts.Size = new System.Drawing.Size(645, 207);
+            this.txtNoteTexts.TabIndex = 0;
+            this.txtNoteTexts.Text = "Enter your note here...";
+            this.txtNoteTexts.Click += new System.EventHandler(this.textBox1_Click);
+            this.txtNoteTexts.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // btnDelete
             // 
@@ -69,12 +69,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtNoteTexts);
             this.Controls.Add(this.btnCollapseOpen);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.textBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FishyNote";
             this.Text = "FishyNote";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FishyNote_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FishyNote_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FishyNote_MouseUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,7 +85,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNoteTexts;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnCollapseOpen;
     }
