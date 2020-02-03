@@ -14,40 +14,32 @@ namespace FishyNotes
     {
         #region Data Members
 
-        //string _automagically = "";
-
         bool _shrink = false;
         bool _fishyNoteBoxClickedOnce = true;
 
+        RemoveFishyNotes closeFishyNote;
+
         #endregion
 
-        /// <summary>
-        /// Default Constrcutor
-        /// </summary>
-        public FishyNote()
+        public int FrmID
         {
-            InitializeComponent();
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="FishNoteText">Text to replace FishNote Text Box</param>
-        public FishyNote(string FishNoteText)
-        {
-            InitializeComponent();
-
-            // Set to false so it cannot get rid of the text
-            _fishyNoteBoxClickedOnce = false;
-
-            // change default text to old text
-            txtNoteTexts.Text = FishNoteText;
+            get;
         }
 
         /// <summary>
         /// Property storing the fish note texts
         /// </summary>
         public List<String> FishNoteTexts { get; set; } = new List<string>();
+
+        /// <summary>
+        /// Default Constrcutor
+        /// </summary>
+        public FishyNote(int id, RemoveFishyNotes close)
+        {
+            InitializeComponent();
+            FrmID = id;
+            closeFishyNote = close;
+        }
 
         /// <summary>
         /// Button which closes the form
@@ -57,6 +49,7 @@ namespace FishyNotes
         private void btnDelete_Click(object sender, EventArgs e)
         {
             FishNoteTexts.Add(txtNoteTexts.Text);
+            closeFishyNote();
             Dispose();
         }
 

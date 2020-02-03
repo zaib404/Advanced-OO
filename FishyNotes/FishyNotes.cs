@@ -12,17 +12,21 @@ namespace FishyNotes
 {
     public partial class frm_FishyNotes : Form
     {
-        #region
+        #region Data Members
 
-        FishyNote _frmNote;
+        Dictionary<int, Form> _frmNotes = new Dictionary<int, Form>();
 
-        bool _clickedOnce = true;
+        int _frmCounter;
+
+        RemoveFishyNotes removeNotes;
 
         #endregion
 
         public frm_FishyNotes()
         {
             InitializeComponent();
+
+            removeNotes = new RemoveFishyNotes(RemoveFishNote);
         }
 
         /// <summary>
@@ -32,20 +36,16 @@ namespace FishyNotes
         /// <param name="e"></param>
         private void AddNote_Click(object sender, EventArgs e)
         {
-            // if clicked once true
-            if (_clickedOnce)
-            {
-                _frmNote = new FishyNote();
-                _clickedOnce = false;
-            }
-            else
-            {
-                int i = _frmNote.FishNoteTexts.Count - 1;
-                _frmNote = new FishyNote(_frmNote.FishNoteTexts[i]);
-            }
+            removeNotes = RemoveFishNote;
 
-            _frmNote.ShowDialog();
+            _frmNotes.Add(_frmCounter++, new FishyNote(_frmCounter, removeNotes));
+            
+            _frmNotes[_frmNotes.Count - 1].Show();
+        }
 
+        private void RemoveFishNote()
+        {
+            _frmNotes.Remove(_frmCounter-1);
         }
     }
 }
