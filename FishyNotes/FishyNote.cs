@@ -1,91 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FishyNotes
 {
-    public partial class FishyNote : Form
+    public partial class frm_FishyNote : Form
     {
         #region Data Members
 
-        bool _shrink = false;
-        bool _fishyNoteBoxClickedOnce = true;
+        // Storing the default text when the form loads
+        string _defaultText;
 
-        RemoveFishyNotes closeFishyNote;
+        // shrink the form to minimum size or max size
+        bool _shrink = false;
+
+        // Delegate Methods
+        DelegateRemoveFishyNotes _removeFishyNotes;
+        DelegateStoreNoteText _retrieveNoteText;
 
         #endregion
 
-        public int FrmID
+        #region Properties
+
+        /// <summary>
+        /// Set a new ID for each new form that opens
+        /// </summary>
+        public Guid ID
         {
             get;
-        }
+        } = Guid.NewGuid();
 
-        /// <summary>
-        /// Property storing the fish note texts
-        /// </summary>
-        public List<String> FishNoteTexts { get; set; } = new List<string>();
-
-        /// <summary>
-        /// Default Constrcutor
-        /// </summary>
-        public FishyNote(int id, RemoveFishyNotes close)
-        {
-            InitializeComponent();
-            FrmID = id;
-            closeFishyNote = close;
-        }
-
-        /// <summary>
-        /// Button which closes the form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            FishNoteTexts.Add(txtNoteTexts.Text);
-            closeFishyNote();
-            Dispose();
-        }
-
-        private void btnCollapseOpen_Click(object sender, EventArgs e)
-        {
-            _shrink = !_shrink;
-
-            if (_shrink)
-            {
-                Size = new Size(800, 190);
-            }
-            else
-            {
-                Size = new Size(816, 489);
-            }
-        }
-
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            if (_fishyNoteBoxClickedOnce)
-            {
-                _fishyNoteBoxClickedOnce = false;
-                txtNoteTexts.Text = "";
-            }
-            else
-            {
-                //automagically += txtNoteTexts.Text;
-            }
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-            //automagically += txtNoteTexts.Text;
-        }
+        #endregion
 
         #region Code Snippet: makes this borderless window movable
+
         // Modified from https://stackoverflow.com/a/24561946 and attributed to user jay_t55
 
         // DECLARE a boolean that is set to true when a mouse down event is detected, call it _mouseDown:
@@ -126,5 +74,78 @@ namespace FishyNotes
             _mouseDown = false;
         }
         #endregion
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        /// <param name="delegateRemoveFishy">Reference to the delegate method to remove from list in FishyNotes</param>
+        /// <param name="delegateGetNote"></param>
+        public frm_FishyNote(DelegateRemoveFishyNotes delegateRemoveFishy, DelegateStoreNoteText delegateRetrieveNoteText)
+        {
+            InitializeComponent();
+
+            // Store default text
+            _defaultText = txtNoteTexts.Text;
+
+            // Pointers for Delegate Methods
+            _removeFishyNotes = delegateRemoveFishy;
+
+            _retrieveNoteText = delegateRetrieveNoteText;
+            
+
+            // Open Form
+            Show();
+        }
+
+        /// <summary>
+        /// Removes reference from FishyNotes and Disposes everything in the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            _retrieveNoteText(ID, txtNoteTexts.Text);
+
+            _removeFishyNotes(ID);
+
+            Dispose();
+        }
+
+        /// <summary>
+        /// When clicking the button the form will either return to minimum size
+        /// or max size
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCollapseOpen_Click(object sender, EventArgs e)
+        {
+            // Set _shrink to the opposite of what it currently is
+            _shrink = !_shrink;
+
+            if (_shrink)
+            {
+                Size = MinimumSize;
+                txtNoteTexts.Visible = false;
+            }
+            else
+            {
+                Size = MaximumSize;
+                txtNoteTexts.Visible = true;
+            }
+        }
+
+        /// <summary>
+        /// Used to check if the text inside the textbox is the default text then
+        /// clear the text.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtNoteTexts_Click(object sender, EventArgs e)
+        {
+            if (txtNoteTexts.Text == _defaultText)
+            {
+                txtNoteTexts.Text = "";
+            }
+        }
     }
 }

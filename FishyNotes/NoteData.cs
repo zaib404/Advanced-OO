@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace FishyNotes
 {
-    interface INoteData
+    class NoteData
     {
-
+        public NoteData()
+        {
+        }
     }
 }

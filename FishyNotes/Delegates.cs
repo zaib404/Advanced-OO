@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace FishyNotes
 {
-    public delegate void RemoveFishyNotes();
-    public delegate void AddFishyNotes();
+    /// <summary>
+    /// Delegate used to remove FishyNote from dictionary
+    /// </summary>
+    /// <param name="frmID">Key used to remove from dictionary</param>
+    public delegate void DelegateRemoveFishyNotes(Guid frmID);
 
-    class Delegates
-    {
-
-    }
+    public delegate void DelegateStoreNoteText(Guid guid, string text);
 }

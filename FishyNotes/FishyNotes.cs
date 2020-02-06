@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FishyNotes
@@ -14,38 +9,58 @@ namespace FishyNotes
     {
         #region Data Members
 
-        Dictionary<int, Form> _frmNotes = new Dictionary<int, Form>();
+        private frm_FishyNote _frmFishyNote;
 
-        int _frmCounter;
+        private IDictionary<Guid, Form> _notes = new Dictionary<Guid, Form>();
 
-        RemoveFishyNotes removeNotes;
+        private IDictionary<Guid, string> _noteText = new Dictionary<Guid, string>();
 
         #endregion
 
         public frm_FishyNotes()
         {
             InitializeComponent();
-
-            removeNotes = new RemoveFishyNotes(RemoveFishNote);
         }
 
+        #region Form Events
+
         /// <summary>
-        /// Click Add Note Button
+        /// Creates new instance of Fishy Note passsing in two delegates
+        /// And adding them to the _notes dictionary
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void AddNote_Click(object sender, EventArgs e)
         {
-            removeNotes = RemoveFishNote;
+            // Create new instance of FishyNote passing delegate methods
+            _frmFishyNote = new frm_FishyNote(RemoveFishyNote, RetrieveFishyNoteText);
 
-            _frmNotes.Add(_frmCounter++, new FishyNote(_frmCounter, removeNotes));
-            
-            _frmNotes[_frmNotes.Count - 1].Show();
+            // Add to dictionary, key is the ID generated in the Fishy Class
+            _notes.Add(_frmFishyNote.ID, _frmFishyNote);
         }
 
-        private void RemoveFishNote()
+        #endregion
+
+        #region Methods
+
+        private void RetrieveFishyNoteText(Guid id, string noteText)
         {
-            _frmNotes.Remove(_frmCounter-1);
+            _noteText.Add(id, noteText);
         }
+
+        /// <summary>
+        /// Called when the FishyNote Form is closing it
+        /// Removes FishNote from Dictionary
+        /// </summary>
+        /// <param name="frmID">Dictionary key</param>
+        private void RemoveFishyNote(Guid frmID)
+        {
+            _notes.Remove(frmID);
+
+            //test.RemoveAt(test.ToList().FindIndex(x => x.ID == frmID));
+
+        }
+
+        #endregion
     }
 }

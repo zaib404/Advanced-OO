@@ -59,7 +59,7 @@
     <Compile Include="FishyNotes.Designer.cs">
       <DependentUpon>FishyNotes.cs</DependentUpon>
     </Compile>
-    <Compile Include="INoteData.cs" />
+    <Compile Include="NoteData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FishyNote.resx">
