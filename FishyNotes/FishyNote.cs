@@ -16,7 +16,9 @@ namespace FishyNotes
 
         // Delegate Methods
         DelegateRemoveFishyNotes _removeFishyNotes;
-        DelegateStoreNoteText _retrieveNoteText;
+        DelegateAddNoteText _AddNoteText;
+        DelegateReplaceNoteText _replaceNoteText;
+        DelegateRetriveNoteText _retrieveNoteText;
 
         #endregion
 
@@ -80,9 +82,12 @@ namespace FishyNotes
         /// </summary>
         /// <param name="delegateRemoveFishy">Reference to the delegate method to remove from list in FishyNotes</param>
         /// <param name="delegateGetNote"></param>
-        public frm_FishyNote(DelegateRemoveFishyNotes delegateRemoveFishy, DelegateStoreNoteText delegateRetrieveNoteText)
+        public frm_FishyNote(DelegateRemoveFishyNotes delegateRemoveFishy, DelegateAddNoteText delegateAddNoteText, 
+            DelegateReplaceNoteText delegateReplaceNoteText, DelegateRetriveNoteText delegateRetriveNoteText, Image image)
         {
             InitializeComponent();
+
+            btnCollapseOpen.Image = image;
 
             // Store default text
             _defaultText = txtNoteTexts.Text;
@@ -90,8 +95,13 @@ namespace FishyNotes
             // Pointers for Delegate Methods
             _removeFishyNotes = delegateRemoveFishy;
 
-            _retrieveNoteText = delegateRetrieveNoteText;
-            
+            _replaceNoteText = delegateReplaceNoteText;
+
+            _retrieveNoteText = delegateRetriveNoteText;
+
+            _AddNoteText = delegateAddNoteText;
+
+            _AddNoteText(ID, txtNoteTexts.Text);
 
             // Open Form
             Show();
@@ -104,11 +114,15 @@ namespace FishyNotes
         /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
-            _retrieveNoteText(ID, txtNoteTexts.Text);
-
             _removeFishyNotes(ID);
 
             Dispose();
+        }
+
+        private void btnReplaceText_Click(object sender, EventArgs e)
+        {
+            //replace delegate
+            _replaceNoteText(ID, txtNoteTexts.Text);
         }
 
         /// <summary>
@@ -146,6 +160,11 @@ namespace FishyNotes
             {
                 txtNoteTexts.Text = "";
             }
+        }
+
+        private void btnRetrieve_Click(object sender, EventArgs e)
+        {
+            txtNoteTexts.Text = _retrieveNoteText(ID);
         }
     }
 }

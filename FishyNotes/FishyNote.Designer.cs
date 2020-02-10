@@ -31,10 +31,14 @@
             this.txtNoteTexts = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnCollapseOpen = new System.Windows.Forms.Button();
+            this.btnReplaceText = new System.Windows.Forms.Button();
+            this.btnRetrieve = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtNoteTexts
             // 
+            this.txtNoteTexts.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtNoteTexts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNoteTexts.Location = new System.Drawing.Point(12, 128);
             this.txtNoteTexts.Multiline = true;
             this.txtNoteTexts.Name = "txtNoteTexts";
@@ -72,12 +76,34 @@
             this.btnCollapseOpen.UseVisualStyleBackColor = false;
             this.btnCollapseOpen.Click += new System.EventHandler(this.btnCollapseOpen_Click);
             // 
+            // btnReplaceText
+            // 
+            this.btnReplaceText.Location = new System.Drawing.Point(215, 28);
+            this.btnReplaceText.Name = "btnReplaceText";
+            this.btnReplaceText.Size = new System.Drawing.Size(83, 23);
+            this.btnReplaceText.TabIndex = 3;
+            this.btnReplaceText.Text = "Replace Text";
+            this.btnReplaceText.UseVisualStyleBackColor = true;
+            this.btnReplaceText.Click += new System.EventHandler(this.btnReplaceText_Click);
+            // 
+            // btnRetrieve
+            // 
+            this.btnRetrieve.Location = new System.Drawing.Point(285, 90);
+            this.btnRetrieve.Name = "btnRetrieve";
+            this.btnRetrieve.Size = new System.Drawing.Size(84, 23);
+            this.btnRetrieve.TabIndex = 4;
+            this.btnRetrieve.Text = "Retrieve Text";
+            this.btnRetrieve.UseVisualStyleBackColor = true;
+            this.btnRetrieve.Click += new System.EventHandler(this.btnRetrieve_Click);
+            // 
             // frm_FishyNote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(381, 352);
+            this.Controls.Add(this.btnRetrieve);
+            this.Controls.Add(this.btnReplaceText);
             this.Controls.Add(this.txtNoteTexts);
             this.Controls.Add(this.btnCollapseOpen);
             this.Controls.Add(this.btnClose);
@@ -99,5 +125,7 @@
         private System.Windows.Forms.TextBox txtNoteTexts;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnCollapseOpen;
+        private System.Windows.Forms.Button btnReplaceText;
+        private System.Windows.Forms.Button btnRetrieve;
     }
 }
