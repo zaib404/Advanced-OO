@@ -8,30 +8,30 @@ using System.Drawing;
 
 namespace FishyNotes
 {
-    class ImageLoader : IModel
+    class Model : IModel
     {
         //IList<String> _imageNames = new List<string>();
 
         IDictionary<string, Image> _imageNames = new Dictionary<string, Image>();
 
-        public ImageLoader()
+        public Model()
         {
             
         }
 
         public Image getImage(string key, int frameWidth, int frameHeight)
         {
-            return Image.FromFile(key);
+            return _imageNames[key];
         }
 
         public IList<string> load(IList<string> pathfilenames)
         {
-            string[] fileList = Directory.GetFiles("FishAssets");
+            foreach (var path in pathfilenames)
+            {
+                _imageNames.Add(path, Image.FromFile(path));
+            }
 
-            Image test = Image.FromFile("test");
-            test.getpr
-
-            return fileList.ToList<String>();
+            return pathfilenames;
         }
     }
 }

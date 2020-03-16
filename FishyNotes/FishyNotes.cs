@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
 
 namespace FishyNotes
 {
@@ -15,11 +16,17 @@ namespace FishyNotes
 
         INoteText _noteText = new NoteData();
 
+IList<String> fishAss = new List<string>();
+
+        IModel img = new Model();
+
         #endregion
 
         public frm_FishyNotes()
         {
             InitializeComponent();
+
+            fishAss = img.load(Directory.GetFiles("FishAssets/").ToList());
         }
 
         #region Form Events
@@ -32,12 +39,14 @@ namespace FishyNotes
         /// <param name="e"></param>
         private void AddNote_Click(object sender, EventArgs e)
         {
-            IModel img = new ImageLoader();
+            Random random = new Random();
+
+            int i = random.Next(0, fishAss.Count - 1);
 
             // Create new instance of FishyNote passing delegate methods
             _frmFishyNote = new frm_FishyNote(
                 _noteData.RemoveFishyNote, _noteData.AddFishyNoteText,
-                _noteText.ReplaceFishyNoteText, _noteText.RetriveFishyNoteText, img.RandomImage());
+                _noteText.ReplaceFishyNoteText, _noteText.RetriveFishyNoteText, img.getImage(fishAss[i],0,0));
 
             // Add to dictionary, key is the ID generated in the Fishy Class
             //_noteText.Add(_frmFishyNote.ID, _frmFishyNote);

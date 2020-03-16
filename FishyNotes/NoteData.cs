@@ -40,7 +40,7 @@ namespace FishyNotes
 
         public string RetriveFishyNoteText(Guid id)
         {
-            return null;// _noteText[id];
+            return _noteText[id];
         }
 
     }

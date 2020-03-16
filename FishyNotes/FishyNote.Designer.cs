@@ -78,7 +78,7 @@
             // 
             // btnReplaceText
             // 
-            this.btnReplaceText.Location = new System.Drawing.Point(215, 28);
+            this.btnReplaceText.Location = new System.Drawing.Point(196, 90);
             this.btnReplaceText.Name = "btnReplaceText";
             this.btnReplaceText.Size = new System.Drawing.Size(83, 23);
             this.btnReplaceText.TabIndex = 3;
